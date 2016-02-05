@@ -1,0 +1,98 @@
+<header class="jumbotron">
+  <h1>PrioriSkill Prototype</h1>
+
+</header>
+
+<div class="container">
+
+<div class="row skills-list">
+<div class="col-sm-8 col-sm-12"  ng-controller="JobsController">
+	<div class="row-header">
+    	<h2>Skills List</h2>
+    </div>
+    <form class="form-inline">
+  		<div class="form-group">
+    		<label for="jobs-organize">Sort by:</label>
+    		<select class="form-control" id="jobs-organize" ng-model="jobsOrder">
+            	<option value="date" selected>Date</option>
+                <option value="title">Title</option>
+                <option value="company">Company</option>
+            </select>
+  		</div>       
+        <button ng-click="toggleJobDetails()" class="btn btn-xs btn-primary" type="button">
+                    {{showDetails ? 'Hide Details':'Show Details'}}</button>
+        <!--
+        <div class="form-group">
+        	<input type="checkbox" id="jobs-order" ng-model="jobsCtrl.jobsDesc">
+    		<label for="jobs-order">Descending</label>
+            <br/>
+  			<tt>value = {{jobsCtrl.jobsDesc}}</tt><br/>
+  		</div>-->
+    </form>
+    <div class="row-content">
+    
+    	<table class="table table-striped table-condensed">
+        	<thead>
+        		<tr>
+                	<th width="15%">Date</th>
+            		<th width="15%">Job Title</th>
+                    <th width="15%">Company Name</th>
+                    <th width="20%">Description</th>
+                    <th width="20%">Terms Saved</th>
+            	</tr>
+            </thead>
+            <tbody>
+            	<tr ng-repeat="job in jobs | orderBy:jobsOrder">
+            		<td>{{job.date | date}}</td>
+                    <td>{{job.title}}</td>
+                    <td>{{job.company}}</td>
+                    <td><p ng-show="showDetails">{{job.description}}</p>
+                    	<p ng-hide="showDetails">{{job.shortDescription}}</p>
+                    </td>
+                    <td><p ng-show="showDetails">{{job.words}}</p></td>
+                    <td> </td>
+            	</tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+
+<div class="row new-job-form" ng-init="form_input = ''">
+	<div class="row-header">
+    	<h2>Add a New Job</h2>
+        <p>{{form_input}}</p>
+    </div>
+    <div class="row-content">
+    	<form class="form-horizontal">
+  			<div class="form-group">
+    			<label for="job-title" class="col-sm-2 control-label">Job Title: </label>
+    			<div class="col-sm-4">
+      				<input type="text" class="form-control" id="job-title" placeholder="Software Developer" ng-model="form_input">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="company-name" class="col-sm-2 control-label">Company Name: </label>
+    			<div class="col-sm-4">
+      				<input type="text" class="form-control" id="company-name" placeholder="Your Favorite Company" ng-model="form_input">
+    			</div>
+  			</div>
+  <div class="form-group">
+    <label for="job-description" class="col-sm-2 control-label">Job Description: </label>
+    <div class="col-sm-4">
+      <textarea rows="7" class="form-control" id="job-description" placeholder="What do you want to do?"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Submit Job</button>
+    </div>
+  </div>
+</form>
+    </div>
+</div>
+
+
+
+
+</div>
