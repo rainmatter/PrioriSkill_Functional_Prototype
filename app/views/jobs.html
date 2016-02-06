@@ -3,10 +3,10 @@
 
 </header>
 
-<div class="container">
+<div class="container" ng-controller="JobsController">
 
 <div class="row skills-list">
-<div class="col-sm-8 col-sm-12"  ng-controller="JobsController">
+<div class="col-sm-8 col-sm-12">
 	<div class="row-header">
     	<h2>Skills List</h2>
     </div>
@@ -61,34 +61,46 @@
 <div class="row new-job-form" ng-init="form_input = ''">
 	<div class="row-header">
     	<h2>Add a New Job</h2>
-        <p>{{form_input}}</p>
+        
     </div>
-    <div class="row-content">
-    	<form class="form-horizontal">
-  			<div class="form-group">
-    			<label for="job-title" class="col-sm-2 control-label">Job Title: </label>
-    			<div class="col-sm-4">
-      				<input type="text" class="form-control" id="job-title" placeholder="Software Developer" ng-model="form_input">
+    
+    <div class="row-content" ng-controller="JobFormController">
+    <div class="col-sm-6 col-xs-12">
+    	<form class="form-horizontal" name="newJobForm" ng-submit="submitNewJob()" novalidate>
+  			<div class="form-group" ng-class="{ 'has-error' : newJobForm.jobTitle.$error.required && !newJobForm.jobTitle.$pristine }">
+    			<label for="title" class="col-sm-3 control-label">Job Title: </label>
+    			<div class="col-sm-8">
+      				<input type="text" name="jobTitle" class="form-control" id="title" placeholder="Software Developer" ng-model="newJob.title" required>
+                    <span ng-show="!newJobForm.jobTitle.$pristine && !newJobForm.jobTitle.$valid" class="help-block">Please enter a job position title.</span>
     			</div>
   			</div>
-  			<div class="form-group">
-    			<label for="company-name" class="col-sm-2 control-label">Company Name: </label>
-    			<div class="col-sm-4">
-      				<input type="text" class="form-control" id="company-name" placeholder="Your Favorite Company" ng-model="form_input">
+  			<div class="form-group" ng-class="{ 'has-error' : newJobForm.jobCompany.$error.required && !newJobForm.jobCompany.$pristine }"><label for="company" class="col-sm-3 control-label">Company Name: </label>
+    			<div class="col-sm-8">
+      				<input type="text" name="jobCompany" class="form-control" id="company" placeholder="Your Favorite Company" ng-model="newJob.company" required>
+                    <span ng-show="!newJobForm.jobCompany.$pristine && !newJobForm.jobCompany.$valid" class="help-block">Please enter a company name or identifier.</span>
     			</div>
   			</div>
-  <div class="form-group">
-    <label for="job-description" class="col-sm-2 control-label">Job Description: </label>
-    <div class="col-sm-4">
-      <textarea rows="7" class="form-control" id="job-description" placeholder="What do you want to do?"></textarea>
+  <div class="form-group" ng-class="{ 'has-error' : newJobForm.jobDesc.$error.required && !newJobForm.jobDesc.$pristine }">
+    <label for="description" class="col-sm-3 control-label">Job Description: </label>
+    <div class="col-sm-8">
+      <textarea rows="7" name="jobDesc" class="form-control" id="description" placeholder="What do you want to do?" ng-model="newJob.description" required></textarea>
+      <span ng-show="!newJobForm.jobDesc.$pristine && !newJobForm.jobDesc.$valid" class="help-block">Please enter a Job Description.</span>
     </div>
   </div>
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Submit Job</button>
+    <div class="col-sm-offset-3 col-sm-10">
+      <button type="submit" class="btn btn-default" ng-disabled="newJobForm.$invalid">Submit Job</button>
     </div>
   </div>
 </form>
+    </div>
+    
+    <div class="col-sm-4 col-xs-12">
+    	<p>{{newJob.title}}</p>
+        <p>{{newJob.company}}</p>
+        <p>{{newJob.description}}</p>
+    </div>
+    
     </div>
 </div>
 

@@ -8,28 +8,14 @@
  * Controller of the prioriSkillPrototypeApp
  */
 angular.module('prioriSkillPrototypeApp')
-  .controller('JobsController', ['$scope', function ($scope) {
+  .controller('JobsController', ['$scope', 'jobsFactory', function ($scope, jobsFactory) {
 	  	$scope.showDetails = false;
 		
-		$scope.jobs = [
-		{	date:'2016-01-25T17:57:28.556094Z',
-			title:'Web Developer',
-			company:'Some Company', 
-			description:'We are looking for someone with expertise in HTML, CSS, JavaScript, and Angular.',
-			shortDescription:'We are looking for...',
-			words: 'HTML, CSS, JavaScript, Angular'
-		}, 
-		{	date:'2016-02-01T17:57:28.556094Z',
-			title:'Java Developer',
-			company:'Another Company', 
-			description:'Applicant must have experience with OOP, Java, and Git version control.',
-			shortDescription:'Applicant must have...',
-			words: 'OOP, Java, Git'
-		}];
-		
 		$scope.toggleJobDetails = function() {
-             $scope.showDetails = !$scope.showDetails;
+            $scope.showDetails = !$scope.showDetails;
         };
+		
+		$scope.jobs = jobsFactory.getJobs();
 		
 		var jobsOrder = 'date';
 		$scope.jobsOrder = jobsOrder;
@@ -37,4 +23,30 @@ angular.module('prioriSkillPrototypeApp')
 
 
 
-  }]);
+  }])
+  
+  
+  .controller('JobFormController', ['$scope', function($scope) {
+		$scope.newJob = {date:'', title:'', company:'', description:'', shortDescription:'', words:'' };
+							 
+		$scope.submitNewJob = function () {
+			console.log('clickie!');
+			$scope.newJob.date = new Date().toISOString();
+			$scope.newJob.shortDescription = shortenDescription($scope.newJob.description);
+			$scope.jobs.push($scope.newJob);
+			$scope.newJobForm.$setPristine();
+			$scope.newJob = {date:'', title:'', company:'', description:'', shortDescription:'', words:'' };
+			console.log($scope.jobs);
+		};
+		
+		function shortenDescription (desc) {
+			if (desc.length < 10) {
+				return desc;
+			} else {
+				return desc.substr(0, 10) +  '...';
+			}
+		}
+		
+		console.log($scope.jobs);
+
+   }]);
