@@ -1,7 +1,4 @@
-<header class="jumbotron">
-  <h1>PrioriSkill Prototype</h1>
 
-</header>
 
 <div class="container" ng-controller="JobsController">
 
@@ -50,11 +47,16 @@
                     	<p ng-hide="showDetails">{{job.shortDescription}}</p>
                     </td>
                     <td><p ng-show="showDetails">{{job.words}}</p></td>
-                    <td> </td>
+                    <td><button ng-click="toggleViewJob(job.id)" class="btn btn-xs btn-primary" type="button">View Job</button> </td>
             	</tr>
             </tbody>
         </table>
     </div>
+    </div>
+    <div class="col-sm-4 col-sm-12" ng-show="showJob">
+    	<p>Title: {{jobViewed.title}}</p>
+        <p>Company: {{jobViewed.company}}</p>
+        <p>Description:<br />{{jobViewed.description}}</p>
     </div>
 </div>
 
