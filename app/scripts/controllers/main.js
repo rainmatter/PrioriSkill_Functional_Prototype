@@ -37,4 +37,17 @@ angular.module('prioriSkillPrototypeApp')
 		} else {
 			$scope.reverse = false;
 		}
+  }])
+  
+  .controller('NavController', ['$scope', function ($scope) {
+		$scope.selected = 0;
+		
+		$scope.isSelected = function(index) {
+			return ($scope.selected === index);
+		};
+		
+		$scope.selectLink = function(index) {
+			$scope.selected = index;
+		};
+	
   }]);

@@ -13,10 +13,55 @@ angular
     'ngAnimate',
     'ngCookies',
     'ngResource',
-    'ngRoute',
+    'ui.router',
     'ngSanitize',
     'ngTouch'
   ])
+  
+  
+  
+  .config(function($stateProvider, $urlRouterProvider) {
+        $stateProvider
+                    // route for the home page
+            .state('app', {
+                url:'/',
+                views: {
+                    'header': {
+                        templateUrl : 'views/header.html'
+                    },
+                    'content': {
+                        templateUrl : 'views/main.html',
+                        controller  : 'SkillsController'
+                    },
+                    'footer': {
+                        templateUrl : 'views/footer.html'
+                    }
+                }
+            })
+                    // route for the aboutus page
+            .state('app.main', {
+                url:'main',
+                views: {
+                    'content@': {
+                        template: '<h1>To be Completed</h1>',
+                        controller  : 'SkillsController'
+                   }
+                }
+            })
+                    // route for the jobs page
+            .state('app.jobs', {
+                url:'jobs',
+                views: {
+                    'content@': {
+                        templateUrl : 'views/jobs.html',
+                        controller  : 'JobsController'
+                     }
+                }
+            });
+
+            $urlRouterProvider.otherwise('/');
+    });
+  /*
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -31,5 +76,5 @@ angular
       })
       .otherwise({
         redirectTo: '/'
-      });
-  });
+      });*/
+  //});
