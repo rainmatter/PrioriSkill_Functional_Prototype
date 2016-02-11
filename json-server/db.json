@@ -21,9 +21,6 @@
       "skills": []
     },
     {
-      "id": 2
-    },
-    {
       "name": "Jon",
       "email": "email2@email.com",
       "password": 54321,
@@ -112,6 +109,16 @@
       "jobs": [],
       "skills": [],
       "id": 11
+    },
+    {
+      "name": "ella",
+      "email": "email2@email.com",
+      "password": "fsf",
+      "dateCreated": "2016-02-11T08:18:31.470Z",
+      "dateLastLogin": "2016-02-11T08:18:31.471Z",
+      "jobs": [],
+      "skills": [],
+      "id": 12
     }
   ]
 }
