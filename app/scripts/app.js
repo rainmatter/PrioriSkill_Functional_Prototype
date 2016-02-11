@@ -23,7 +23,22 @@ angular
   .config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
                     // route for the home page
-            .state('app', {
+			.state('app', {
+                url:'/',
+                views: {
+                    'header': {
+                        templateUrl : 'views/header.html'
+                    },
+                    'content': {
+                        templateUrl : 'views/login.html',
+                        controller  : 'AccountController'
+                    },
+                    'footer': {
+                        templateUrl : 'views/footer.html'
+                    }
+                }
+            })
+            /*.state('app', {
                 url:'/',
                 views: {
                     'header': {
@@ -37,7 +52,7 @@ angular
                         templateUrl : 'views/footer.html'
                     }
                 }
-            })
+            })*/
                     // route for the aboutus page
             .state('app.main', {
                 url:'main',

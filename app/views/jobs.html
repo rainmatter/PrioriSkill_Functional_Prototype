@@ -47,7 +47,9 @@
                     	<p ng-hide="showDetails">{{job.shortDescription}}</p>
                     </td>
                     <td><p ng-show="showDetails">{{job.words}}</p></td>
-                    <td><button ng-click="toggleViewJob(job.id)" class="btn btn-xs btn-primary" type="button">View Job</button> </td>
+                    <td>
+                    	<button ng-click="toggleViewJob(job.id)" class="btn btn-xs btn-primary" type="button">View Job</button> 
+                    </td>
             	</tr>
             </tbody>
         </table>

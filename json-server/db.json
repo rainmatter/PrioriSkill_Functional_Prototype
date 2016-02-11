@@ -1,0 +1,117 @@
+{
+  "accounts": [
+    {
+      "id": 0,
+      "name": "Mary",
+      "email": "email@email.com",
+      "password": "12345",
+      "dateCreated": "2016-01-25T17:57:28.556094Z",
+      "dateLastLogin": "2016-02-25T17:57:28.556094Z",
+      "jobs": [],
+      "skills": []
+    },
+    {
+      "id": 1,
+      "name": "Larry",
+      "email": "email1@email.com",
+      "password": "12345",
+      "dateCreated": "2015-01-26T17:57:28.556094Z",
+      "dateLastLogin": "2016-01-28T17:57:28.556094Z",
+      "jobs": [],
+      "skills": []
+    },
+    {
+      "id": 2
+    },
+    {
+      "name": "Jon",
+      "email": "email2@email.com",
+      "password": 54321,
+      "dateCreated": "2016-02-11T06:44:40.250Z",
+      "dateLastLogin": "2016-02-11T06:44:40.250Z",
+      "jobs": [],
+      "skills": [],
+      "id": 3
+    },
+    {
+      "name": "Ann",
+      "email": "email3@email.com",
+      "password": 564652,
+      "dateCreated": "2016-02-11T06:48:07.219Z",
+      "dateLastLogin": "2016-02-11T06:48:07.219Z",
+      "jobs": [],
+      "skills": [],
+      "id": 4
+    },
+    {
+      "name": "ray",
+      "email": "email2@email.com",
+      "password": "grqgr",
+      "dateCreated": "2016-02-11T06:50:10.406Z",
+      "dateLastLogin": "2016-02-11T06:50:10.406Z",
+      "jobs": [],
+      "skills": [],
+      "id": 5
+    },
+    {
+      "name": "ray2",
+      "email": "email2@email.com",
+      "password": "hgw5",
+      "dateCreated": "2016-02-11T06:51:15.120Z",
+      "dateLastLogin": "2016-02-11T06:51:15.120Z",
+      "jobs": [],
+      "skills": [],
+      "id": 6
+    },
+    {
+      "name": "aria",
+      "email": "email2@email.com",
+      "password": "hgtfhf",
+      "dateCreated": "2016-02-11T06:55:38.159Z",
+      "dateLastLogin": "2016-02-11T06:55:38.159Z",
+      "jobs": [],
+      "skills": [],
+      "id": 7
+    },
+    {
+      "name": "fdfd",
+      "email": "dfs@da",
+      "password": "dfsfsd",
+      "dateCreated": "2016-02-11T07:23:53.728Z",
+      "dateLastLogin": "2016-02-11T07:23:53.728Z",
+      "jobs": [],
+      "skills": [],
+      "id": 8
+    },
+    {
+      "name": "htahts",
+      "email": "dfs@dahsyt",
+      "password": "jyths",
+      "dateCreated": "2016-02-11T07:24:21.711Z",
+      "dateLastLogin": "2016-02-11T07:24:21.711Z",
+      "jobs": [],
+      "skills": [],
+      "id": 9
+    },
+    {
+      "name": "ray3",
+      "email": "email3@email.com",
+      "password": "get54",
+      "dateCreated": "2016-02-11T07:25:55.741Z",
+      "dateLastLogin": "2016-02-11T07:25:55.741Z",
+      "jobs": [],
+      "skills": [],
+      "id": 10
+    },
+    {
+      "name": "das",
+      "email": "dfs@da",
+      "password": "dfs",
+      "dateCreated": "2016-02-11T07:29:42.135Z",
+      "dateLastLogin": "2016-02-11T07:29:42.135Z",
+      "jobs": [],
+      "skills": [],
+      "id": 11
+    }
+  ]
+}

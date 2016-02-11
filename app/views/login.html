@@ -1,0 +1,92 @@
+<div class="container" ng-controller="AccountController">
+	<div class="row">
+    	<div class="col-xs-12 col-sm-offset-2 col-sm-4">
+        	<h2>Log In</h2>
+        </div>
+    
+    	<div class="col-sm-12">
+    	<form class="form-horizontal" name="loginForm">
+  			<div class="form-group">
+    			<label for="email" class="col-sm-2 control-label">Email: </label>
+    			<div class="col-sm-4">
+      				<input type="email" class="form-control" id="email" placeholder="ex: email@email.com" ng-model="input">
+    			</div>
+  			</div>
+            <div class="form-group">
+    			<label for="password" class="col-sm-2 control-label">Password: </label>
+    			<div class="col-sm-4">
+      				<input type="password" class="form-control" id="password" placeholder="********" ng-model="input">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<div class="col-sm-offset-2 col-sm-10">
+      				<button type="submit" class="btn btn-default">Submit</button> Or <a href="" style="font-weight:600;">Create an account</a>.
+    			</div>
+  			</div>
+		</form>
+    	</div>
+        
+    </div>
+
+
+<div ng-controller="NewAccountController">
+
+	<div class="row" ng-repeat="account in accounts" ng-controller="AccountController">
+    	<div>
+        	{{account.name}}, {{account.email}}, {{account.password}}, {{account.dateCreated | date}}, {{account.dateLastLogin | date}}
+        </div>
+    </div>
+
+	<div class="row">
+    	<div class="col-xs-12 col-sm-offset-2 col-sm-4">
+        	<h2>Create a new account</h2>
+        </div>
+    
+    	<div class="col-sm-12">
+    	<form class="form-horizontal" name="newAccountForm" ng-submit="submitNewAccount()" novalidate>
+  			<div class="form-group" ng-class="{ 'has-error' : newAccountForm.newName.$error.required && !newAccountForm.newName.$pristine }">
+    			<label for="name" class="col-sm-2 control-label">Name: </label>
+    			<div class="col-sm-4">
+      				<input type="text" name="newName" class="form-control" id="name" placeholder="Enter your name or nickname" ng-model="newAccount.name" required>
+                    <span ng-show="newAccountForm.newName.$error.required && !newAccountForm.newName.$pristine" class="help-block">Please enter a name.</span>
+    			</div>
+  			</div>
+  			<div class="form-group" ng-class="{ 'has-error' : newAccountForm.newEmail.$error.required && !newAccountForm.newEmail.$pristine }">
+    			<label for="newEmail" class="col-sm-2 control-label">Email: </label>
+    			<div class="col-sm-4">
+      				<input type="email" name="newEmail" class="form-control" id="newEmail" placeholder="ex: email@email.com" ng-model="newAccount.email" required>
+                    <span ng-show="newAccountForm.newEmail.$error.required && !newAccountForm.newEmail.$pristine" class="help-block">Please enter a valid email.</span>
+    			</div>
+  			</div>
+            <div class="form-group" ng-class="{ 'has-error' : newAccountForm.newPassword.$error.required && !newAccountForm.newPassword.$pristine }">
+    			<label for="newPassword" class="col-sm-2 control-label">Password: </label>
+    			<div class="col-sm-4">
+      				<input type="password" name="newPassword" class="form-control" id="newPassword" placeholder="********" ng-model="newAccount.password" required>
+                    <span ng-show="newAccountForm.newPassword.$error.required && !newAccountForm.newPassword.$pristine" class="help-block">Please enter a valid password.</span>
+    			</div>
+  			</div>
+            <div class="form-group" ng-class="{ 'has-error' : newAccountForm.newPasswordConfirm.$error.required && !newAccountForm.newPasswordConfirm.$pristine }">
+    			<label for="newPasswordConfirm" class="col-sm-2 control-label">Confirm password: </label>
+    			<div class="col-sm-4">
+      				<input type="password" name="newPasswordConfirm" class="form-control" id="newPasswordConfirm" placeholder="********" ng-model="pwordConfirm" required>
+                    <span ng-show="newAccountForm.newPasswordConfirm.$error.required && !newAccountForm.newPasswordConfirm.$pristine" class="help-block">Please re-enter your password.</span>
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<div class="col-sm-offset-2 col-sm-10">
+      				<button type="submit" class="btn btn-default" ng-disabled="newAccountForm.$invalid">Submit</button>
+    			</div>
+  			</div>
+		</form>
+    	</div>
+        
+    </div>
+    
+    <div class="row">
+    	<div>
+        	{{newAccount.name}}, {{newAccount.email}}, {{newAccount.password}}, {{pwordConfirm}}, {{newAccount.dateCreated}}, {{newAccount.dateLastLogin}}
+        </div>
+    </div>
+    
+</div>
+</div>

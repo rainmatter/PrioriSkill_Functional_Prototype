@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: SkillaCtrl', function () {
+describe('Controller: SkillsController', function () {
 
   // load the controller's module
   beforeEach(module('prioriSkillPrototypeApp'));
