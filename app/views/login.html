@@ -20,13 +20,87 @@
   			</div>
   			<div class="form-group">
     			<div class="col-sm-offset-2 col-sm-10">
-      				<button type="submit" class="btn btn-default">Submit</button> Or <a href="" style="font-weight:600;">Create an account</a>.
+      				<button type="submit" class="btn btn-default">Submit</button> Or <a href="#" data-toggle="modal" data-target="#newAccountModal" style="font-weight:600;">Create an account</a>.
     			</div>
   			</div>
 		</form>
     	</div>
         
     </div>
+    
+    
+    
+
+<!-- New Account Modal -->
+<div ng-controller="NewAccountController">
+<div class="modal fade" id="newAccountModal" tabindex="-1" role="dialog" aria-labelledby="newAccountModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <form class="form-horizontal" name="newAccountForm" ng-submit="submitNewAccount()" novalidate>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        
+        <h4 class="modal-title" id="myModalLabel">Create a New Account</h4>
+      </div>
+      <div class="modal-body">
+        
+  			<div class="form-group" ng-class="{ 'has-error' : newAccountForm.newName.$error.required && !newAccountForm.newName.$pristine }">
+    			<label for="name" class="col-sm-3 control-label">Name: </label>
+    			<div class="col-sm-5">
+      				<input type="text" name="newName" class="form-control" id="name" placeholder="Enter your name or nickname" ng-model="newAccount.name" required>
+                    <span ng-show="newAccountForm.newName.$error.required && !newAccountForm.newName.$pristine" class="help-block">Please enter a name.</span>
+    			</div>
+  			</div>
+  			<div class="form-group" ng-class="{ 'has-error' : newAccountForm.newEmail.$error.required && !newAccountForm.newEmail.$pristine }">
+    			<label for="newEmail" class="col-sm-3 control-label">Email: </label>
+    			<div class="col-sm-5">
+      				<input type="email" name="newEmail" class="form-control" id="newEmail" placeholder="ex: email@email.com" ng-model="newAccount.email" required>
+                    <span ng-show="newAccountForm.newEmail.$error.required && !newAccountForm.newEmail.$pristine" class="help-block">Please enter a valid email.</span>
+                    <span ng-show="showEmailInUse" class="help-block" style="color:#FB0004">*Email already in use.</span>
+    			</div>
+  			</div>
+            <div class="form-group" ng-class="{ 'has-error' : newAccountForm.newPassword.$error.required && !newAccountForm.newPassword.$pristine }">
+    			<label for="newPassword" class="col-sm-3 control-label">Password: </label>
+    			<div class="col-sm-5">
+      				<input type="password" name="newPassword" class="form-control" id="newPassword" placeholder="********" ng-model="newAccount.password" required>
+                    <span ng-show="newAccountForm.newPassword.$error.required && !newAccountForm.newPassword.$pristine" class="help-block">Please enter a valid password.</span>
+                    <span ng-show="showPasswordNotMatched" class="help-block" style="color:#FB0004">*Passwords do not match.</span>
+                    <span ng-show="showPasswordNotSufficient && !newAccountForm.newPassword.$pristine" class="help-block" style="color:#FB0004">*Password must be at least 5 characters and contain at least one number.</span>
+    			</div>
+  			</div>
+            <div class="form-group" ng-class="{ 'has-error' : newAccountForm.newPasswordConfirm.$error.required && !newAccountForm.newPasswordConfirm.$pristine }">
+    			<label for="newPasswordConfirm" class="col-sm-3 control-label">Confirm password: </label>
+    			<div class="col-sm-5">
+      				<input type="password" name="newPasswordConfirm" class="form-control" id="newPasswordConfirm" placeholder="********" ng-model="pwordConfirm" required>
+                    <span ng-show="newAccountForm.newPasswordConfirm.$error.required && !newAccountForm.newPasswordConfirm.$pristine" class="help-block">Please re-enter your password.</span>
+                    <span ng-show="showPasswordNotMatched" class="help-block" style="color:#FB0004">*Passwords do not match.</span>
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<div class="col-sm-offset-3 col-sm-9">
+      				
+    			</div>
+  			</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" ng-disabled="newAccountForm.$invalid">Submit</button>
+      </div>
+      		</form>
+    </div>
+  </div>
+</div>
+</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 <div ng-controller="NewAccountController">
@@ -64,6 +138,8 @@
     			<div class="col-sm-4">
       				<input type="password" name="newPassword" class="form-control" id="newPassword" placeholder="********" ng-model="newAccount.password" required>
                     <span ng-show="newAccountForm.newPassword.$error.required && !newAccountForm.newPassword.$pristine" class="help-block">Please enter a valid password.</span>
+                    <span ng-show="showPasswordNotMatched" class="help-block" style="color:#FB0004">*Passwords do not match.</span>
+                    <span ng-show="showPasswordNotSufficient && !newAccountForm.newPassword.$pristine" class="help-block" style="color:#FB0004">*Password must be at least 5 characters and contain at least one number.</span>
     			</div>
   			</div>
             <div class="form-group" ng-class="{ 'has-error' : newAccountForm.newPasswordConfirm.$error.required && !newAccountForm.newPasswordConfirm.$pristine }">
@@ -71,6 +147,7 @@
     			<div class="col-sm-4">
       				<input type="password" name="newPasswordConfirm" class="form-control" id="newPasswordConfirm" placeholder="********" ng-model="pwordConfirm" required>
                     <span ng-show="newAccountForm.newPasswordConfirm.$error.required && !newAccountForm.newPasswordConfirm.$pristine" class="help-block">Please re-enter your password.</span>
+                    <span ng-show="showPasswordNotMatched" class="help-block" style="color:#FB0004">*Passwords do not match.</span>
     			</div>
   			</div>
   			<div class="form-group">

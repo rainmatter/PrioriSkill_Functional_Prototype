@@ -28,58 +28,60 @@ angular.module('prioriSkillPrototypeApp')
 		var newAccount = {name:'', email:'', password:'', dateCreated:'', dateLastLogin:'', jobs:[], skills:[]};
 		$scope.newAccount = newAccount;
 		$scope.pwordConfirm = '';
-		$scope.emailInUse = true;
+		//$scope.emailInUse = true;
 		$scope.showEmailInUse = false;	
-				
-				$scope.anAccount = accountFactory.getAccount().query({email: 'email@email.com'});
-				console.log(accountFactory.getAccount().query({email: 'email@email.com'}).length);
+		$scope.showPasswordNotMatched = false;
+		$scope.showPasswordNotSufficient = false;
 		
 		$scope.submitNewAccount = function() {
-			$scope.testEmailInUse($scope.newAccount.email);
-			if (!$scope.emailInUse) {
-				$scope.newAccount.dateCreated = new Date().toISOString();
-				$scope.newAccount.dateLastLogin = new Date().toISOString();
-				accountFactory.getAccounts().save($scope.newAccount);
-				$scope.accounts.push($scope.newAccount);
-				$scope.newAccount = {name:'', email:'', password:'', dateCreated:'', dateLastLogin:'', jobs:[], skills:[]};
-				$scope.newAccountForm.$setPristine();
-				$scope.pwordConfirm = '';
-				$scope.emailInUse = false;
+			if (!$scope.testEmailInUse()) {
 				$scope.showEmailInUse = false;
-				//console.log($scope.accounts);
+				if ($scope.passwordSufficient()) {
+					$scope.showPasswordNotSufficient = false;
+					if ($scope.newAccount.password === $scope.pwordConfirm) {
+						$scope.newAccount.dateCreated = new Date().toISOString();
+						$scope.newAccount.dateLastLogin = new Date().toISOString();
+						accountFactory.getAccounts().save($scope.newAccount);
+						$scope.accounts.push($scope.newAccount);
+						$scope.newAccount = {name:'', email:'', password:'', dateCreated:'', dateLastLogin:'', jobs:[], skills:[]};
+						$scope.newAccountForm.$setPristine();
+						$scope.pwordConfirm = '';
+						$scope.showPasswordNotMatched = false;
+						$scope.showEmailInUse = false;
+						$('newAccountModal').modal('toggle');
+					} else {
+						$scope.showPasswordNotMatched = true;
+					}
+				} else {
+					$scope.showPasswordNotSufficient = true;
+				}
 			} else {
 				$scope.showEmailInUse = true;
 			}
 		};
 		
-		$scope.testEmailInUse = function(newEmail) {
-			$scope.anAccount = accountFactory.getAccount().query({email: '' + newEmail + ''});
-				console.log($scope.anAccount.length);
-						
-						if ($scope.anAccount.length > 0){
-							console.log('email already in use!');
-							$scope.emailInUse = true;
-							$scope.showEmailInUse = true;
-						} else {
-							console.log('good to go!');
-							$scope.emailInUse = false;
-							$scope.showEmailInUse = false;
-						}
+		$scope.testEmailInUse = function() {
+			for (var i = 0; i < $scope.accounts.length; i++) {
+				if ($scope.accounts[i].email === $scope.newAccount.email) {
+					return true;
+				}
+			}
+			return false;
 		};
 		
-		/*$scope.anAccount = {};
-            $scope.anAccount = accountFactory.getAccount().query({email: 'email@email.com'})
-                .$promise.then(
-                    function (response) {
-                        $scope.anAccount = response;
-                        console.log($scope.anAccount);
-						console.log('email already in use!');
-                    },
-                    function (response) {
-                        console.log('Error: ' + response.status + ' ' + response.statusText);
-						console.log('good to go!');
-                    }
-                );*/
+		$scope.passwordSufficient = function() {
+			if ($scope.newAccount.password.length < 5) {
+				return false;
+			}
+			var containsNum = false;
+			for (var i = 0; i < 10; i++) {
+				if ($scope.newAccount.password.indexOf(i) >= 0) {
+					containsNum = true;
+				}
+			}
+			return containsNum;	
+		};
+		
 		
 
 	
